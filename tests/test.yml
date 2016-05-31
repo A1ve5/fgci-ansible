@@ -41,6 +41,7 @@
 #     - ansible-role-arc-frontend
      - ansible-role-collectd
      - ansible-role-cuda
+     - ansible-role-dell
 #     - ansible-role-dhcp_server
 #     - ansible-role-dnsmasq
      - ansible-role-fail2ban
@@ -52,11 +53,12 @@
      - ansible-role-nis
      - ansible-role-ntp
      - ansible-role-postfix
+     - ansible-role-pdsh-machines
 #     - ansible-role-pxe_bootstrap
-#     - ansible-role-pxe_config
+     - ansible-role-pxe_config
      - ansible-role-rdma
      - ansible-role-rsyslog
-#     - ansible-role-slurm
+     - ansible-role-slurm
      - ansible-role-smartd
      - ansible-role-squid
      - ansible-role-sshd
