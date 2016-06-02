@@ -7,11 +7,14 @@
  - hosts: localhost
    remote_user: root
    vars:
+     - slurm_type: "notype"
+     - slurm_accounting_storage_host: "dbdhost.example.com"
      - trusted_public_networks: "10.0.0.0/8"
      - trusted_public_ipv6_networks: "fd11::/64"
      - adminMailAddr: "changeme@example.com"
      - yum_conf_template: False
      - nis_server: True
+     - pdsh_group: "{{ groups['compute'] }}"
      - fail2ban_jails:
          sshd:
            enabled: 'true'
@@ -53,6 +56,7 @@
      - ansible-role-nis
      - ansible-role-ntp
      - ansible-role-postfix
+     - ansible-role-pam
      - ansible-role-pdsh-machines
 #     - ansible-role-pxe_bootstrap
      - ansible-role-pxe_config
