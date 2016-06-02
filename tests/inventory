@@ -14,10 +14,10 @@ localhost
 localhost
 
 [compute]
-node1 int_ip_addr=10.1.100.1 mac_address=XX:XX:XX:XX:XX:X1 pxe_name=ph1 ib_ip_addr=10.2.100.1
-node2 int_ip_addr=10.1.100.2 mac_address=XX:XX:XX:XX:XX:X2 pxe_name=ph2 ib_ip_addr=10.2.100.2
-node3 int_ip_addr=10.1.100.3 mac_address=XX:XX:XX:XX:XX:X3 pxe_name=ph3 ib_ip_addr=10.2.100.3 
-node4 int_ip_addr=10.1.100.4 mac_address=XX:XX:XX:XX:XX:X4 pxe_name=ph4 ib_ip_addr=10.2.100.4
+node1 int_ip_addr=10.1.100.1 mac_address=XX:XX:XX:XX:XX:X1 pxe_name=node1 ib_ip_addr=10.2.100.1
+node2 int_ip_addr=10.1.100.2 mac_address=XX:XX:XX:XX:XX:X2 pxe_name=node2 ib_ip_addr=10.2.100.2
+node3 int_ip_addr=10.1.100.3 mac_address=XX:XX:XX:XX:XX:X3 pxe_name=node3 ib_ip_addr=10.2.100.3 
+node4 int_ip_addr=10.1.100.4 mac_address=XX:XX:XX:XX:XX:X4 pxe_name=node4 ib_ip_addr=10.2.100.4
 gpu int_ip_addr=10.1.100.4 mac_address=XX:XX:XX:XX:XX:X5 pxe_name=gpu ib_ip_addr=10.2.100.5 gpu=True
 
 [pxe_bootable_nodes:children]

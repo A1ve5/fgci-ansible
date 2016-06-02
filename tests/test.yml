@@ -26,6 +26,14 @@
            port: 'ssh'
            logpath: '/var/log/secure'
            maxretry: '6'
+     - siteDomain: "fgci.csc.fi"
+     - siteName: "io"
+     - hosts_file_to_populate: "/tmp/hosts"
+     - ksBootSrvDir: "/tmp"
+     - location: "http://www.nic.funet.fi/pub/mirrors/centos.org/7/os/x86_64/"
+     - rootpwhash: "SHAFOOO"
+     - hosts_file_login_group_to_populate: ""
+
 
 # on docker there's no rsyslog by default and thus no /var/log/secure
    pre_tasks:
@@ -35,6 +43,9 @@
        file: path=/var/log/secure state=touch
      - name: copy examples/group_vars to group_vars
        command: cp -Rv /fgci-ansible/examples/group_vars /fgci-ansible/group_vars
+     - name: touch hosts_file_to_populate
+       file: path={{ hosts_file_to_populate }} state=touch
+
 
    roles:
      - fgci-ansible
