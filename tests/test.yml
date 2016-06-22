@@ -7,11 +7,14 @@
  - hosts: localhost
    remote_user: root
    vars:
+     - slurm_type: "notype"
+     - slurm_accounting_storage_host: "dbdhost.example.com"
      - trusted_public_networks: "10.0.0.0/8"
      - trusted_public_ipv6_networks: "fd11::/64"
      - adminMailAddr: "changeme@example.com"
      - yum_conf_template: False
      - nis_server: True
+     - pdsh_group: "{{ groups['compute'] }}"
      - fail2ban_jails:
          sshd:
            enabled: 'true'
@@ -23,6 +26,14 @@
            port: 'ssh'
            logpath: '/var/log/secure'
            maxretry: '6'
+     - siteDomain: "fgci.csc.fi"
+     - siteName: "io"
+     - hosts_file_to_populate: "/tmp/hosts"
+     - ksBootSrvDir: "/tmp"
+     - location: "http://www.nic.funet.fi/pub/mirrors/centos.org/7/os/x86_64/"
+     - rootpwhash: "SHAFOOO"
+     - hosts_file_login_group_to_populate: ""
+
 
 # on docker there's no rsyslog by default and thus no /var/log/secure
    pre_tasks:
@@ -30,6 +41,11 @@
        file: path=/var/log state=directory
      - name: test only - touch /var/log/secure logfile
        file: path=/var/log/secure state=touch
+     - name: copy examples/group_vars to group_vars
+       command: cp -Rv /fgci-ansible/examples/group_vars /fgci-ansible/group_vars
+     - name: touch hosts_file_to_populate
+       file: path={{ hosts_file_to_populate }} state=touch
+
 
    roles:
      - fgci-ansible
@@ -41,6 +57,7 @@
 #     - ansible-role-arc-frontend
      - ansible-role-collectd
      - ansible-role-cuda
+     - ansible-role-dell
 #     - ansible-role-dhcp_server
 #     - ansible-role-dnsmasq
      - ansible-role-fail2ban
@@ -52,11 +69,13 @@
      - ansible-role-nis
      - ansible-role-ntp
      - ansible-role-postfix
+     - ansible-role-pam
+     - ansible-role-pdsh-machines
 #     - ansible-role-pxe_bootstrap
-#     - ansible-role-pxe_config
+     - ansible-role-pxe_config
      - ansible-role-rdma
      - ansible-role-rsyslog
-#     - ansible-role-slurm
+     - ansible-role-slurm
      - ansible-role-smartd
      - ansible-role-squid
      - ansible-role-sshd
